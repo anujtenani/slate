@@ -76,7 +76,7 @@ This endpoint gets the latest ticker data.
 
 ### HTTPS Request
 
-`GET http://api.oxubit.com/trade/ticker`
+`GET http://api.oxybit.com/trade/ticker`
 
 ## Get Ticker (Simpler)
 
@@ -100,7 +100,7 @@ This endpoint gets a simpler version of ticker data
 
 ### HTTPS Request
 
-`GET https://api.oxubit.com/trade/ticker/simple`
+`GET https://api.oxybit.com/trade/ticker/simple`
 
 
 # Orders
