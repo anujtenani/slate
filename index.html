@@ -329,7 +329,7 @@ You must replace <code>my-api-key</code> with your personal API key.
 </span></code></pre>
 <p>This endpoint gets the latest ticker data.</p>
 <h3 id='https-request'>HTTPS Request</h3>
-<p><code>GET http://api.oxubit.com/trade/ticker</code></p>
+<p><code>GET http://api.oxybit.com/trade/ticker</code></p>
 <h2 id='get-ticker-simpler'>Get Ticker (Simpler)</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.oxybit.com/trade/ticker/simple"</span> -X GET
 </code></pre>
 <blockquote>
@@ -337,7 +337,7 @@ You must replace <code>my-api-key</code> with your personal API key.
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;pair&gt;"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"pair"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;pair&gt;"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"bidprice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;price at which you can sell in the market&gt;"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"askprice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;price at which you can buy from the market&gt;"</span><span class="p">,</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -346,7 +346,7 @@ You must replace <code>my-api-key</code> with your personal API key.
 </span></code></pre>
 <p>This endpoint gets a simpler version of ticker data</p>
 <h3 id='https-request-2'>HTTPS Request</h3>
-<p><code>GET https://api.oxubit.com/trade/ticker/simple</code></p>
+<p><code>GET https://api.oxybit.com/trade/ticker/simple</code></p>
 <h1 id='orders'>Orders</h1><h2 id='get-order-book'>Get Order book</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.oxybit.com/trade/orderbook/btc-inr"</span> -X GET
 </code></pre>
 <blockquote>
