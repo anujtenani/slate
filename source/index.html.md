@@ -14,7 +14,7 @@ search: true
 
 Welcome to OxyBit API ! You can use our API to access the entire functionality of our trading platform. From algorithmic trading to end-to-end payments for merchants, you can build it all.
 
-We have language bindings in Shell, PHP, and Javascript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+We have language bindings in Shell! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
 # Authentication
 
@@ -28,9 +28,6 @@ curl "api_endpoint_here"
   -H "token: my-api-key"
 ```
 
-```javascript
-
-```
 
 > Make sure to replace `my-api-key` with your API key.
 
@@ -51,9 +48,6 @@ You must replace <code>my-api-key</code> with your personal API key.
 curl "https://api.oxybit.com/trade/ticker" -X GET
 ```
 
-```javascript
-fetch("https://api.oxybit.com/trade/ticker").then((result)=>result.json());
-```
 > The above command returns JSON structured like this:
 
 ```json
@@ -90,9 +84,6 @@ This endpoint gets the latest ticker data.
 curl "https://api.oxybit.com/trade/ticker/simple" -X GET
 ```
 
-```javascript
-fetch("https://api.oxybit.com/trade/ticker/simple").then((result)=>result.json());
-```
 > The above command returns JSON structured like this:
 
 ```json
@@ -119,9 +110,7 @@ This endpoint gets a simpler version of ticker data
 curl "https://api.oxybit.com/trade/orderbook/btc-inr" -X GET
 ```
 
-```javascript
-fetch("https://api.oxybit.com/trade/orderbook/btc-inr").then((result)=>result.json());
-```
+
 > The above command returns JSON structured like this:
 
 ```json
@@ -157,9 +146,6 @@ You must replace <code>pair</code> with the desired pair. For list of pairs see 
 curl "https://api.oxybit.com/trade/history/btc-inr" -X GET
 ```
 
-```javascript
-fetch("https://api.oxybit.com/trade/history/btc-inr").then((result)=>result.json());
-```
 > The above command returns JSON structured like this:
 
 ```json
