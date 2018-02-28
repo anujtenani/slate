@@ -89,7 +89,7 @@ curl "https://api.oxybit.com/trade/ticker/simple" -X GET
 ```json
 [
    {
-      "symbol": "<pair>",
+      "pair": "<pair>",
       "bidprice": "<price at which you can sell in the market>",
       "askprice": "<price at which you can buy from the market>",
     }
@@ -348,4 +348,4 @@ You must replace <code>currency</code> with the desired currency
 
 ### HTTPS Request
 
-`GET https://api.oxybit.com/wallet/depositaddress/<currency>`
+`GET https://api.oxybit.com/wallet/depositaddress/currency`
