@@ -3,237 +3,364 @@ title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  - ruby
-  - python
-  - javascript
-
+  
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
-
-includes:
-  - errors
+  - <a href='https://oxybit.com/profile/api'>Sign Up for a Developer Key</a>
 
 search: true
 ---
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to OxyBit API ! You can use our API to access the entire functionality of our trading platform. From algorithmic trading to end-to-end payments for merchants, you can build it all.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+We have language bindings in Shell, PHP, and Javascript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
 # Authentication
 
-> To authorize, use this code:
+> To authorize, first generate a API key at [https://oxybit.com/profile/api](https://oxybit.com/profile/api)
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
+> For all the authenticated endpoints, pass token as request header
 
 ```shell
 # With shell, you can just pass the correct header with each request
 curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+  -H "token: my-api-key"
 ```
 
 ```javascript
-const kittn = require('kittn');
 
-let api = kittn.authorize('meowmeowmeow');
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+> Make sure to replace `my-api-key` with your API key.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+You can register a new OxyBit API key at our [developer portal](http://example.com/developers).
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+OxyBit expects for the API key to be included in all Authenticated API requests to the server in a header that looks like the following:
 
-`Authorization: meowmeowmeow`
+`token: my-api-key`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>my-api-key</code> with your personal API key.
 </aside>
 
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+# Ticker
+## Get Ticker
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+curl "https://api.oxybit.com/trade/ticker" -X GET
 ```
 
 ```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+fetch("https://api.oxybit.com/trade/ticker").then((result)=>result.json());
 ```
-
 > The above command returns JSON structured like this:
 
 ```json
 [
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
+   {"<trading pair>": {
+          "pair": "<pair>",
+          "bidprice": "<price at which you can sell in the market>",
+          "bidvol": "<total volume of bid orders>",
+          "bidtotal": "<total value of the bid orders>",
+          "rank": "<rank of the coin as per market cap>",
+          "askprice": "<price at which you can buy from the market>",
+          "askvol": "<total volume of ask orders>",
+          "asktotal": "<total value of the ask orders>",
+          "hi": "<highest price of last 24 hours>",
+          "lo": "<lowest price of last 24 hours>",
+          "open": "<market open price i.e. price 24 hours ago>",
+          "last": "<price of last trade>",
+          "percent": "<percentage change in price the last 24 hours>",
+          "vol": "<total amount of coins that exchanged hands>"
+        }
+   }
+ ]
+
+```
+This endpoint gets the latest ticker data.
+
+### HTTPS Request
+
+`GET http://api.oxubit.com/trade/ticker`
+
+## Get Ticker (Simpler)
+
+```shell
+curl "https://api.oxybit.com/trade/ticker/simple" -X GET
 ```
 
-This endpoint retrieves all kittens.
+```javascript
+fetch("https://api.oxybit.com/trade/ticker/simple").then((result)=>result.json());
+```
+> The above command returns JSON structured like this:
 
-### HTTP Request
+```json
+[
+   {
+      "symbol": "<pair>",
+      "bidprice": "<price at which you can sell in the market>",
+      "askprice": "<price at which you can buy from the market>",
+    }
+]
 
-`GET http://example.com/api/kittens`
+```
+This endpoint gets a simpler version of ticker data
 
-### Query Parameters
+### HTTPS Request
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+`GET https://api.oxubit.com/trade/ticker/simple`
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+
+# Orders
+## Get Order book
+
+```shell
+curl "https://api.oxybit.com/trade/orderbook/btc-inr" -X GET
+```
+
+```javascript
+fetch("https://api.oxybit.com/trade/orderbook/btc-inr").then((result)=>result.json());
+```
+> The above command returns JSON structured like this:
+
+```json
+{
+  "pair":"<pair>",
+  "buy": [
+      {
+        "amount":"<amount>",
+        "price":"<price>"
+      }
+  ],
+  "sell":[
+      {
+        "amount":"<amount>",
+        "price":"<price>" 
+      }
+  ]
+}
+```
+This endpoint gets the order book for a particular pair
+
+<aside class="notice">
+You must replace <code>pair</code> with the desired pair. For list of pairs see /trade/ticker
 </aside>
 
-## Get a Specific Kitten
+### HTTPS Request
 
-```ruby
-require 'kittn'
+`GET https://api.oxybit.com/trade/orderbook/<pair>`
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
+## Get Trade History
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
+curl "https://api.oxybit.com/trade/history/btc-inr" -X GET
 ```
 
 ```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
+fetch("https://api.oxybit.com/trade/history/btc-inr").then((result)=>result.json());
 ```
-
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+    "pair" : "<pair>",
+    "items" : [
+        {
+          "uuid": "<uniq id of this trade>",
+          "amount": "<Amount>",
+          "price": "<Price>",
+          "created": "<UNIX timestamp>",
+          "type": "<0 = buy, 1 = sell>"
+        }
+    ]
 }
 ```
+This endpoint gets the order book for a particular pair
 
-This endpoint retrieves a specific kitten.
+<aside class="notice">
+You must replace <code>pair</code> with the desired pair. For list of pairs see /trade/ticker
+</aside>
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+### HTTPS Request
 
-### HTTP Request
+`GET https://api.oxybit.com/trade/history/<pair>`
 
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
+## Get Your Open Orders
+> Requires authorization. See Authentication
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
+curl "https://api.oxybit.com/trade/openorders/btc-inr" -X GET -H "token:my-api-token"
 ```
 
 ```javascript
-const kittn = require('kittn');
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
 ```
-
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "deleted" : ":("
+    "pair" : "<pair>",
+    "items" : [
+        {
+          "uuid": "<uniq id of this trade>",
+          "amount": "<Amount>",
+          "price": "<Price>",
+          "created": "<UNIX timestamp>",
+          "type": "<0 = buy, 1 = sell>"
+        }
+    ]
 }
 ```
+This endpoint gets the your open orders for a particular pair
 
-This endpoint deletes a specific kitten.
+<aside class="notice">
+You must replace <code>pair</code> with the desired pair. For list of pairs see /trade/ticker
+</aside>
 
-### HTTP Request
+<aside class="notice">
+You must replace <code>my-api-key</code> with your generated API key
+</aside>
 
-`DELETE http://example.com/kittens/<ID>`
+### HTTPS Request
 
+`GET https://api.oxybit.com/trade/openorders/<pair>`
+
+## Cancel Order
+> Requires authorization. See Authentication
+
+```shell
+curl "https://api.oxybit.com/trade/cancelorder/" -X POST -H "token:my-api-token"  -d "uuid=<uuid>"
+```
+
+```javascript
+
+```
+> The above command returns JSON structured like this:
+
+```json
+{
+    "pair" : "<pair>",
+    "items" : [
+        {
+          "uuid": "<uniq id of this trade>",
+          "amount": "<Amount>",
+          "price": "<Price>",
+          "created": "<UNIX timestamp>",
+          "type": "<0 = buy, 1 = sell>"
+        }
+    ]
+}
+```
+This endpoint cancels your open orders
+
+<aside class="notice">
+You must replace <code>uuid</code> with the order uuid. For list of uuid see your Open Orders
+</aside>
+
+<aside class="notice">
+You must replace <code>my-api-key</code> with your generated API key
+</aside>
+
+### HTTPS Request
+
+`POST https://api.oxybit.com/trade/cancelorder/`
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to delete
+uuid | The uuid of the order to cancel
 
+
+## Place Order
+> Requires authorization. See Authentication
+
+```shell
+curl "https://api.oxybit.com/trade/placeorder/" -X POST  -H "token:my-api-token" -d "type=0&amount=1&price=1&pair=btc-inr"
+```
+```javascript
+
+```
+> The above command returns JSON structured like this:
+
+```json
+{
+    "ret" : "<the return value>",
+    "error" : "<If any error was there in placing order>"
+}
+```
+This endpoint places a new order
+
+<aside class="notice">
+You must replace <code>my-api-key</code> with your generated API key
+</aside>
+
+### HTTPS Request
+
+`POST https://api.oxybit.com/trade/placeorder/`
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+type      | The type of order to place. 0 = buy order, 1 = sell order
+price     | The price per unit of amount
+amount    | The total amount of order
+pair      | The trading pair to place order in (eg. btc-inr). For list of pairs see /trade/ticker
+
+# Wallet
+## Get Wallet Balance
+
+```shell
+curl -X GET https://api.oxybit.com/wallet -H "token:my-api-token"
+```
+> This returns JSON structured like
+
+```json
+  {
+    "items" : [
+      {
+        "currency" : "inr",
+        "available": "0",
+        "locked": "0"
+      }
+    ]    
+  }
+```
+Get balance of your wallet
+
+<aside class="notice">
+You must replace <code>my-api-key</code> with your generated API key
+</aside>
+
+### HTTPS Request
+
+`GET https://api.oxybit.com/wallet/`
+
+## Get Deposit Address
+
+```shell
+curl -X GET https://api.oxybit.com/wallet/depositaddress/btc -H "token:my-api-token"
+```
+> This returns JSON structured like
+
+```json
+{
+    "address" : "<address>",
+    "currency": "<currency>",
+    "tag": "<in case of Stellar, Ripple, Monero>"
+    
+}
+```
+Get deposit address for that particular currency
+
+<aside class="notice">
+You must replace <code>my-api-key</code> with your generated API key
+</aside>
+<aside class="notice">
+You must replace <code>currency</code> with the desired currency
+</aside>
+
+
+### HTTPS Request
+
+`GET https://api.oxybit.com/wallet/depositaddress/<currency>`
