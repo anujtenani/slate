@@ -277,7 +277,7 @@
         <h1 id='introduction'>Introduction</h1>
 <p>Welcome to OxyBit API ! You can use our API to access the entire functionality of our trading platform. From algorithmic trading to end-to-end payments for merchants, you can build it all.</p>
 
-<p>We have language bindings in Shell, PHP, and Javascript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p>We have language bindings in Shell! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
 <h1 id='authentication'>Authentication</h1>
 <blockquote>
 <p>To authorize, first generate a API key at <a href="https://oxybit.com/profile/api">https://oxybit.com/profile/api</a></p>
@@ -287,7 +287,6 @@
 <pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
 curl <span class="s2">"api_endpoint_here"</span>
   -H <span class="s2">"token: my-api-key"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code>
 </code></pre>
 <blockquote>
 <p>Make sure to replace <code>my-api-key</code> with your API key.</p>
@@ -303,7 +302,6 @@ curl <span class="s2">"api_endpoint_here"</span>
 You must replace <code>my-api-key</code> with your personal API key.
 </aside>
 <h1 id='ticker'>Ticker</h1><h2 id='get-ticker'>Get Ticker</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.oxybit.com/trade/ticker"</span> -X GET
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="s2">"https://api.oxybit.com/trade/ticker"</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span><span class="o">=&gt;</span><span class="nx">result</span><span class="p">.</span><span class="nx">json</span><span class="p">());</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -333,7 +331,6 @@ You must replace <code>my-api-key</code> with your personal API key.
 <h3 id='https-request'>HTTPS Request</h3>
 <p><code>GET http://api.oxubit.com/trade/ticker</code></p>
 <h2 id='get-ticker-simpler'>Get Ticker (Simpler)</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.oxybit.com/trade/ticker/simple"</span> -X GET
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="s2">"https://api.oxybit.com/trade/ticker/simple"</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span><span class="o">=&gt;</span><span class="nx">result</span><span class="p">.</span><span class="nx">json</span><span class="p">());</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -351,7 +348,6 @@ You must replace <code>my-api-key</code> with your personal API key.
 <h3 id='https-request-2'>HTTPS Request</h3>
 <p><code>GET https://api.oxubit.com/trade/ticker/simple</code></p>
 <h1 id='orders'>Orders</h1><h2 id='get-order-book'>Get Order book</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.oxybit.com/trade/orderbook/btc-inr"</span> -X GET
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="s2">"https://api.oxybit.com/trade/orderbook/btc-inr"</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span><span class="o">=&gt;</span><span class="nx">result</span><span class="p">.</span><span class="nx">json</span><span class="p">());</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -380,7 +376,6 @@ You must replace <code>pair</code> with the desired pair. For list of pairs see 
 <h3 id='https-request-3'>HTTPS Request</h3>
 <p><code>GET https://api.oxybit.com/trade/orderbook/&lt;pair&gt;</code></p>
 <h2 id='get-trade-history'>Get Trade History</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.oxybit.com/trade/history/btc-inr"</span> -X GET
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">fetch</span><span class="p">(</span><span class="s2">"https://api.oxybit.com/trade/history/btc-inr"</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span><span class="o">=&gt;</span><span class="nx">result</span><span class="p">.</span><span class="nx">json</span><span class="p">());</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -575,7 +570,7 @@ You must replace <code>my-api-key</code> with your generated API key
 You must replace <code>currency</code> with the desired currency
 </aside>
 <h3 id='https-request-9'>HTTPS Request</h3>
-<p><code>GET https://api.oxybit.com/wallet/depositaddress/&lt;currency&gt;</code></p>
+<p><code>GET https://api.oxybit.com/wallet/depositaddress/currency</code></p>
 
       </div>
       <div class="dark-box">
