@@ -360,7 +360,6 @@ You must replace <code>my-api-key</code> with your generated API key
 You must replace <code>currency</code> with the desired currency
 </aside>
 
-
 ### HTTPS Request
 
 `GET https://api.oxybit.com/wallet/depositaddress/<currency>`
